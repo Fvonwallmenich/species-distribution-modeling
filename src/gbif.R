@@ -61,6 +61,7 @@ fData<-d%>%
 
 fData<-fData%>%
   filter(countryCode %in% c("US", "CA", "MX"))
+#same as: (countryCode=="US"| countryCode=="CA"| countryCode=="MX")
 
 fData<-fData%>%
   filter(!basisOfRecord %in% c("FOSSIL_SPECIMEN", "LIVING_SPECIMEN"))
@@ -68,3 +69,15 @@ fData<-fData%>%
 fData<-fData%>%
   cc_sea(lon="decimalLongitude", lat="decimalLatitude")
 
+fData<-fData%>%
+  distinct(decimalLatitude, decimalLongitude, speciesKey, datasetKey, .keep_all=TRUE)
+#got rid of duplicate enteries 
+
+
+#In one step it might look like...
+#fData<-d%>%
+  #filter(!is.na(decimalLatitude), !is.na(decimalLongitude))%>%
+  #filter(countryCode %in% c("US", "CA", "MX"))%>%
+  #filter(!basisOfRecord %in% c("FOSSIL_SPECIMEN", "LIVING_SPECIMEN"))%>%
+  #cc_sea(lon="decimalLongitude", lat="decimalLatitude")%>%
+  #distinct(decimalLatitude, decimalLongitude, speciesKey, datasetKey, .keep_all=TRUE)
