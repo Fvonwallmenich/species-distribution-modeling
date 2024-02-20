@@ -5,7 +5,7 @@
 #create a map to display the accurance points
 
 #List of packages
-packages<-c("tidyverse", "rgbif", "usethis", "CoordinateCleaner", "leaflet", "mapview")
+packages<-c("tidyverse", "rgbif", "webshot2", "usethis", "CoordinateCleaner", "leaflet", "mapview")
 
 # install packages not yet installed: prevents errors from R runing a package already installed
 installed_packages<-packages %in% rownames(installed.packages())
@@ -81,3 +81,5 @@ fData<-fData%>%
   #filter(!basisOfRecord %in% c("FOSSIL_SPECIMEN", "LIVING_SPECIMEN"))%>%
   #cc_sea(lon="decimalLongitude", lat="decimalLatitude")%>%
   #distinct(decimalLatitude, decimalLongitude, speciesKey, datasetKey, .keep_all=TRUE)
+
+write.csv(fData, "data/cleanedData.csv")
