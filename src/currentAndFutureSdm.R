@@ -187,10 +187,10 @@ futureClimateRaster <- cmip6_world("CNRM-CM6-1", "585", "2061-2080", var = "bioc
 
 # 7. Prep for the model
 
-
+#syncronize the variable names
 names(futureClimateRaster)=names(currentClimRasterStack)
 
-
+#zoom in to data set box (instead of the whole world)
 geographicAreaFutureC6 <- crop(futureClimateRaster, predictExtent)
 
 
@@ -201,16 +201,16 @@ habronattusFutureSDM <- raster::predict(habronattusCurrentSDM, geographicAreaFut
 
 # 9. Plot the future SDM
 
-
+#turn variable into data frame
 habronattusFutureSDMDf <- as.data.frame(habronattusFutureSDM, xy=TRUE)
 
-
+#bounding box
 xmax <- max(habronattusFutureSDMDf$x)
 xmin <- min(habronattusFutureSDMDf$x)
 ymax <- max(habronattusFutureSDMDf$y)
 ymin <- min(habronattusFutureSDMDf$y)
 
-
+#Final Plot
 ggplot() +
   geom_polygon(data = wrld, mapping = aes(x = long, y = lat, group = group),
                fill = "grey75") +
