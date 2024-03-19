@@ -47,3 +47,10 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+#Climate data
+data/wc2.1_2.5m/
+
+#Future Climate data
+data/cmip6/wc2.1_2.5m/
+
